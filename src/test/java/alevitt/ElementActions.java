@@ -37,9 +37,9 @@ public class ElementActions {
     public static void getAttributes(By locator, AppiumDriver driver) {
         System.out.println(driver.findElement(locator).getText() + " attributes:");
         System.out.println("checked: " + driver.findElement(locator).getAttribute("checked"));
-        System.out.println("enabled: " + driver.findElement(locator).getAttribute("enabled"));
-        System.out.println("selected: " + driver.findElement(locator).getAttribute("selected"));
-        System.out.println("displayed: " + driver.findElement(locator).getAttribute("displayed"));
+        System.out.println("enabled: " + driver.findElement(locator).isEnabled());
+        System.out.println("selected: " + driver.findElement(locator).isSelected());
+        System.out.println("displayed: " + driver.findElement(locator).isDisplayed());
         System.out.println("");
     }
 }
