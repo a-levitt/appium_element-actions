@@ -18,7 +18,7 @@ public class ElementActions {
         By viewsMenu = AppiumBy.id("android:id/list");
         By editText = AppiumBy.id("io.appium.android.apis:id/edit");
 
-
+        getAttributes(views, driver);
         driver.findElement(views).click();
 
         WebElement scroll = driver.findElement(viewsMenu);
@@ -32,5 +32,14 @@ public class ElementActions {
         driver.findElement(editText).sendKeys("Changed text");
         Thread.sleep(3000);
         driver.findElement(editText).clear();
+    }
+
+    public static void getAttributes(By locator, AppiumDriver driver) {
+        System.out.println(driver.findElement(locator).getText() + " attributes:");
+        System.out.println("checked: " + driver.findElement(locator).getAttribute("checked"));
+        System.out.println("enabled: " + driver.findElement(locator).getAttribute("enabled"));
+        System.out.println("selected: " + driver.findElement(locator).getAttribute("selected"));
+        System.out.println("displayed: " + driver.findElement(locator).getAttribute("displayed"));
+        System.out.println("");
     }
 }
