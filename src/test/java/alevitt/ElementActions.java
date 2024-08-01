@@ -3,25 +3,34 @@ package alevitt;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 
 import java.net.MalformedURLException;
 
 public class ElementActions {
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
         AppiumDriver driver = DriverInitialization.initializeDriver();
 
-        WebElement menuElementViews = driver.findElement(AppiumBy.accessibilityId("Views"));
-        menuElementViews.click();
+        By views = AppiumBy.accessibilityId("Views");
+        By textField = AppiumBy.accessibilityId("TextFields");
+        By viewsMenu = AppiumBy.id("android:id/list");
+        By editText = AppiumBy.id("io.appium.android.apis:id/edit");
 
-        WebElement scroll = driver.findElement(AppiumBy.id("android:id/list"));
+
+        driver.findElement(views).click();
+
+        WebElement scroll = driver.findElement(viewsMenu);
         driver.executeScript("mobile: swipeGesture", ImmutableMap.of(
                 "elementId", ((RemoteWebElement) scroll).getId(),
                 "direction", "up",
                 "percent", 0.75));
 
-        WebElement viewsElementTextField = driver.findElement(AppiumBy.accessibilityId("TextFields"));
-        viewsElementTextField.click();
+        driver.findElement(textField).click();
+
+        driver.findElement(editText).sendKeys("Changed text");
+        Thread.sleep(3000);
+        driver.findElement(editText).clear();
     }
 }
