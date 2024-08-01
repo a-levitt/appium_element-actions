@@ -6,12 +6,17 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
+import java.time.Duration;
 
 public class ElementActions {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         AppiumDriver driver = DriverInitialization.initializeDriver();
+        // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         By views = AppiumBy.accessibilityId("Views");
         By textField = AppiumBy.accessibilityId("TextFields");
@@ -19,7 +24,8 @@ public class ElementActions {
         By editText = AppiumBy.id("io.appium.android.apis:id/edit");
 
         getAttributes(views, driver);
-        driver.findElement(views).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(views)).click();
+        //driver.findElement(views).click();
 
         WebElement scroll = driver.findElement(viewsMenu);
         driver.executeScript("mobile: swipeGesture", ImmutableMap.of(
