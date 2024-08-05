@@ -20,7 +20,8 @@ public class AndroidGestures {
         //pinchOpenGesture(map_driver);
         //pinchCloseGesture(map_driver);
 
-        swipeGesture(driver);
+        //swipeUpGesture(driver);
+        swipeLeftGesture(driver);
 
     }
 
@@ -89,13 +90,27 @@ public class AndroidGestures {
         ));
     }
 
-    public static void swipeGesture(AppiumDriver driver) {
+    public static void swipeUpGesture(AppiumDriver driver) {
 
         driver.findElement(AppiumBy.accessibilityId("Views")).click();
 
         driver.executeScript("mobile: swipeGesture", ImmutableMap.of(
                 "left", 100, "top", 100, "width", 200, "height", 200,
                 "direction", "up",
+                "percent", 0.75
+        ));
+    }
+    public static void swipeLeftGesture(AppiumDriver driver) {
+
+        driver.findElement(AppiumBy.accessibilityId("Views")).click();
+        driver.findElement(AppiumBy.accessibilityId("Gallery")).click();
+        driver.findElement(AppiumBy.accessibilityId("1. Photos")).click();
+
+        WebElement galleryWidget = driver.findElement(AppiumBy.id("io.appium.android.apis:id/gallery"));
+
+        driver.executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) galleryWidget).getId(),
+                "direction", "left",
                 "percent", 0.75
         ));
     }
