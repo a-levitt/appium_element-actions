@@ -3,7 +3,6 @@ package alevitt;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 
@@ -11,15 +10,17 @@ import java.net.MalformedURLException;
 
 public class AndroidGestures {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
-        //AppiumDriver driver = DriverInitialization.initializeDriver();
-        AppiumDriver map_driver = DriverInitialization.initializeDriver_Maps();
+        AppiumDriver driver = DriverInitialization.initializeDriver();
+        //AppiumDriver map_driver = DriverInitialization.initializeDriver_Maps();
 
         //longClickGesture(driver);
         //dragGesture(driver);
 
         //clickGesture_MapsSkip(map_driver);
-        pinchOpenGesture(map_driver);
-        pinchCloseGesture(map_driver);
+        //pinchOpenGesture(map_driver);
+        //pinchCloseGesture(map_driver);
+
+        swipeGesture(driver);
 
     }
 
@@ -84,6 +85,17 @@ public class AndroidGestures {
                 "top", 470,
                 "width", 600,
                 "height", 600,
+                "percent", 0.75
+        ));
+    }
+
+    public static void swipeGesture(AppiumDriver driver) {
+
+        driver.findElement(AppiumBy.accessibilityId("Views")).click();
+
+        driver.executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "left", 100, "top", 100, "width", 200, "height", 200,
+                "direction", "up",
                 "percent", 0.75
         ));
     }
