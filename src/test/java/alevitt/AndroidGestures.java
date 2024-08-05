@@ -10,14 +10,14 @@ import org.openqa.selenium.remote.RemoteWebElement;
 import java.net.MalformedURLException;
 
 public class AndroidGestures {
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
         //AppiumDriver driver = DriverInitialization.initializeDriver();
         AppiumDriver map_driver = DriverInitialization.initializeDriver_Maps();
 
         //longClickGesture(driver);
         //dragGesture(driver);
-        clickGesture_MapsSkip(map_driver);
-        clickGesture_MapsSkip(map_driver);
+
+        //clickGesture_MapsSkip(map_driver);
         pinchOpenGesture(map_driver);
 
     }
@@ -59,11 +59,17 @@ public class AndroidGestures {
         ));
     }
 
-    public static void pinchOpenGesture(AppiumDriver driver) {
-        WebElement longTouchCircle = driver.findElement(AppiumBy.id("com.google.android.apps.maps:id/explore_tab_home_bottom_sheet"));
+    public static void pinchOpenGesture(AppiumDriver driver) throws InterruptedException {
+        driver.findElement(AppiumBy.xpath("//android.widget.Button[@text=\"SKIP\"]")).click();
+        //WebElement zoomInMap = driver.findElement(AppiumBy.id("com.google.android.apps.maps:id/explore_tab_home_bottom_sheet"));
+        Thread.sleep(5000);
 
         driver.executeScript("mobile: pinchOpenGesture", ImmutableMap.of(
-                "elementId", ((RemoteWebElement) longTouchCircle).getId(),
+               //"elementId", ((RemoteWebElement) zoomInMap).getId(),
+                "left", 200,
+                "top", 470,
+                "width", 600,
+                "height", 600,
                 "percent", 0.75
         ));
     }
