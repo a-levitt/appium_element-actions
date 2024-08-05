@@ -12,7 +12,8 @@ public class AndroidGestures {
     public static void main(String[] args) throws MalformedURLException {
         AppiumDriver driver = DriverInitialization.initializeDriver();
 
-        longClickGesture(driver);
+        // longClickGesture(driver);
+        dragGesture(driver);
     }
 
 
@@ -24,8 +25,23 @@ public class AndroidGestures {
 
             // mobile: touchAndHold
             driver.executeScript("mobile: longClickGesture", ImmutableMap.of(
-                    "elementId", ((RemoteWebElement) longTouchCircle).getId(),
+                    // "elementId", ((RemoteWebElement) longTouchCircle).getId(),
+                    "x", 230,
+                    "y", 650,
                     "duration", 1500
+            ));
+        }
+
+        public static void dragGesture(AppiumDriver driver) {
+            driver.findElement(AppiumBy.accessibilityId("Views")).click();
+            driver.findElement(AppiumBy.accessibilityId("Drag and Drop")).click();
+
+            WebElement longTouchCircle = driver.findElement(AppiumBy.id("io.appium.android.apis:id/drag_dot_1"));
+
+            driver.executeScript("mobile: dragGesture", ImmutableMap.of(
+                    "elementId", ((RemoteWebElement) longTouchCircle).getId(),
+                    "endX", 615,
+                    "endY", 550
             ));
         }
 }
