@@ -22,4 +22,16 @@ public class DriverInitialization {
 
         return new AndroidDriver(url, options);
     }
+
+    public static AppiumDriver initializeDriver_Maps() throws MalformedURLException {
+        UiAutomator2Options options = new UiAutomator2Options()
+                .setUdid("emulator-5554")
+                .setAppPackage("com.google.android.apps.maps")
+                .setAppActivity("com.google.android.maps.MapsActivity")
+                ;
+
+        URL url = new URL("http://0.0.0.0:4723");
+
+        return new AndroidDriver(url, options);
+    }
 }
