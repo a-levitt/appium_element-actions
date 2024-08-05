@@ -19,6 +19,7 @@ public class AndroidGestures {
 
         //clickGesture_MapsSkip(map_driver);
         pinchOpenGesture(map_driver);
+        pinchCloseGesture(map_driver);
 
     }
 
@@ -66,6 +67,19 @@ public class AndroidGestures {
 
         driver.executeScript("mobile: pinchOpenGesture", ImmutableMap.of(
                //"elementId", ((RemoteWebElement) zoomInMap).getId(),
+                "left", 200,
+                "top", 470,
+                "width", 600,
+                "height", 600,
+                "percent", 0.75
+        ));
+    }
+
+    public static void pinchCloseGesture(AppiumDriver driver) throws InterruptedException {
+        Thread.sleep(6000);
+
+        driver.executeScript("mobile: pinchCloseGesture", ImmutableMap.of(
+                //"elementId", ((RemoteWebElement) zoomInMap).getId(),
                 "left", 200,
                 "top", 470,
                 "width", 600,
