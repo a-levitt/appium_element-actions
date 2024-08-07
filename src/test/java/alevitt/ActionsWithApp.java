@@ -11,6 +11,8 @@ import java.util.Arrays;
 public class ActionsWithApp {
     public static void main(String[] args) throws MalformedURLException {
         AppiumDriver driver = DriverInitialization.initializeDriverClear();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
         String appState = String.valueOf(((AndroidDriver) driver).queryAppState("io.appium.android.apis"));
 
         ((AndroidDriver) driver).installApp("D:\\Appium\\course_proj1\\ApiDemos-debug.apk",
