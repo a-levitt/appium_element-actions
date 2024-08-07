@@ -31,6 +31,9 @@ public class DriverInitialization {
                 //.setAppPackage("io.appium.android.apis")
                 //.setAppActivity("io.appium.android.apis.ApiDemos")
                 //.setApp("D:\\Appium\\course_proj1\\ApiDemos-debug.apk")
+                // If device has a pin on lockscreen:
+                .setUnlockType("pin")
+                .setUnlockKey("1111")
                 ;
 
         URL url = new URL("http://0.0.0.0:4723");
